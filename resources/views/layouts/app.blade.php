@@ -84,67 +84,10 @@
                                 <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
                             </form> --}}
 
-                            @php
-                                $pending = 'pending';
-                                $notification = DB::table('orders')->where('order_status',$pending)->get();
-                            @endphp
+                            
                             <ul class="nav navbar-nav navbar-right pull-right">
                                 <li class="dropdown hidden-xs">
-                                    <a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-                                        <i class="md md-notifications"></i> <span class="badge badge-xs badge-danger">{{ $notification->count('order_status') }}</span>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-lg">
-                                        <li class="text-center notifi-title">Notification</li>
-                                        <li class="list-group">
-                                           <!-- list item-->
-                                           <a href="{{ url('/pending-order') }}" class="list-group-item">
-                                              <div class="media">
-                                                 <div class="pull-left">
-                                                   <i class="far fa-plus"></i>
-                                                 </div>
-                                                 <div class="media-body clearfix">
-                                                    <div class="media-heading">New Order Pending Request</div>
-                                                    <p class="m-0">
-                                                       <small>You have {{ $notification->count('order_status') }} pending order</small>
-                                                    </p>
-                                                 </div>
-                                              </div>
-                                           </a>
-                                           <!-- list item-->
-                                            {{-- <a href="javascript:void(0);" class="list-group-item">
-                                              <div class="media">
-                                                 <div class="pull-left">
-                                                    <em class="fa fa-diamond fa-2x text-primary"></em>
-                                                 </div>
-                                                 <div class="media-body clearfix">
-                                                    <div class="media-heading">New settings</div>
-                                                    <p class="m-0">
-                                                       <small>There are new settings available</small>
-                                                    </p>
-                                                 </div>
-                                              </div>
-                                            </a> --}}
-                                            <!-- list item-->
-                                            {{-- <a href="javascript:void(0);" class="list-group-item">
-                                              <div class="media">
-                                                 <div class="pull-left">
-                                                    <em class="fa fa-bell-o fa-2x text-danger"></em>
-                                                 </div>
-                                                 <div class="media-body clearfix">
-                                                    <div class="media-heading">Updates</div>
-                                                    <p class="m-0">
-                                                       <small>There are
-                                                          <span class="text-primary">2</span> new updates available</small>
-                                                    </p>
-                                                 </div>
-                                              </div>
-                                            </a> --}}
-                                           <!-- last list item -->
-                                            <a href="javascript:void(0);" class="list-group-item">
-                                              <small>See all notifications</small>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    
                                 </li>
                                 <li class="hidden-xs">
                                     <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="md md-crop-free"></i></a>
@@ -153,7 +96,7 @@
                                     <a href="#" class="right-bar-toggle waves-effect waves-light"><i class="md md-chat"></i></a>
                                 </li> --}}
                                 <li class="dropdown">
-                                    <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="{{ asset('/admin/images/avatar-1.jpg') }}" alt="user-img" class="img-circle"> </a>
+                                    <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="/images/profile.jpg" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
                                         {{-- <li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> Profile</a></li> --}}
                                         <li><a href="{{ route('settings') }}"><i class="md md-settings"></i> Settings</a></li>
@@ -266,8 +209,9 @@
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="fal fa-sort-size-down"></i><span> Orders </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ route('pending.order') }}"><i class="fas fa-bell-exclamation"></i> Pending Order </a></li>
-                                    <li><a href="{{ route('success.order') }}"><i class="fas fa-smile"></i> Approved Order</a></li>
+                                    {{-- <li><a href="{{ route('pending.order') }}"><i class="fas fa-bell-exclamation"></i> Pending Order </a></li> --}}
+                                    {{-- <li><a href="{{ route('success.order') }}"><i class="fas fa-smile"></i> Approved Order</a></li> --}}
+                                    <li><a href="{{ route('view.order') }}"><i class="fas fa-smile"></i> View Order</a></li>
                                 </ul>
                             </li>
                              {{-- Sales report section --}}
@@ -275,6 +219,16 @@
                                 <a href="#" class="waves-effect"><i class="fas fa-hotel"></i><span> Sales Report </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('daily.report') }}"><i class="fas fa-calendar-week"></i> Daily Report </a></li>
+                                    <li><a href="{{ route('monthly.report') }}"><i class="fas fa-calendar-week"></i> Monthly Report </a></li>
+                                   
+                                </ul>
+                            </li>
+
+                            {{-- profit --}}
+                             <li class="has_sub">
+                                <a href="#" class="waves-effect"><i class="fas fa-hotel"></i><span> Profit</span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('monthly.profit') }}"><i class="fas fa-calendar-week"></i> Monthly Profit </a></li>
                                    
                                 </ul>
                             </li>
@@ -284,6 +238,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('take.attendence') }}"><i class="far fa-hand-point-right"></i> Take Attendence </a></li>
                                     <li><a href="{{ route('all.attendence') }}"><i class="fas fa-eye"></i> All Attendence</i> </a></li>
+                                    <li><a href="{{ route('monthly.attendence') }}"><i class="fas fa-eye"></i>Monthly Attendence Report</i> </a></li>
                                   
                                     
                                 </ul>

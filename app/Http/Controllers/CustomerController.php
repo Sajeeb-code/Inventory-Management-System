@@ -71,7 +71,7 @@ class CustomerController extends Controller
     //all view customer
     public function allCustomer()
     {
-        $customers = Customer::all();
+        $customers = Customer::latest()->get();
         return view('customer.all_Customer',compact('customers'));
     }
     //delete customer

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -72,7 +73,7 @@ class EmployeeController extends Controller
     //all employee
     public function allEmployee()
     {
-        $employees = Employee::all();
+        $employees = Employee::latest()->get();
         return view('employee.all_Employee',compact('employees'));
     }
 
@@ -146,5 +147,56 @@ class EmployeeController extends Controller
         $employee->save();
          return redirect()->back()->with('message','Employee Updated Successfully');
 
+    }
+
+
+
+    //pdf
+
+    public function get_all_employee()
+    {
+        $employeeData = DB::table('employees')->get();
+        return $employeeData;
+    }
+    function pdf()
+    {
+     $pdf = \App::make('dompdf.wrapper');
+     $pdf->loadHTML($this->convert_employee_data_to_html());
+     return $pdf->stream();
+    }
+
+    function convert_employee_data_to_html()
+    {
+     $employee_data = $this->get_all_employee();
+     $output = '
+     <h3 align="center">Employee Data</h3>
+     <table width="100%" style="border-collapse: collapse; border: 0px;">
+      <tr>
+    <th style="border: 1px solid; padding:12px;" width="6%">Name</th>
+    <th style="border: 1px solid; padding:12px;" width="8%">Email</th>
+    <th style="border: 1px solid; padding:12px;" width="7%">Phone</th>
+    <th style="border: 1px solid; padding:12px;" width="10%">Address</th>
+    <th style="border: 1px solid; padding:12px;" width="3%">Salary</th>
+    <th style="border: 1px solid; padding:12px;" width="15%">Experience</th>
+    
+
+   </tr>
+     ';  
+     foreach($employee_data as $employee)
+     {
+      $output .= '
+      <tr>
+       <td style="border: 1px solid; padding:12px;">'.$employee->name.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$employee->email.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$employee->phone.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$employee->address.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$employee->salary.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$employee->experience.'</td>
+      
+      </tr>
+      ';
+     }
+     $output .= '</table>';
+     return $output;
     }
 }

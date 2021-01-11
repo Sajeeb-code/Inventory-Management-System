@@ -21,13 +21,13 @@
                             <div class="col-md-12">
                                 <div class="panel panel-default">
                                    
-                                    @php
-                                        $logo = DB::table('users');
+                                     @php
+                                        $com_name = DB::table('settings')->first();
                                     @endphp
                                     <div class="panel-body">
                                         <div class="clearfix">
                                             <div class="pull-left">
-                                                <h4 class="text-right"><img src="images/logo_dark.png" alt="velonic"></h4>
+                                                <h3>{{ $com_name->company_name }}</h3>
                                                 
                                             </div>
                                             @php
@@ -77,6 +77,8 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
+                                                <hr>
+                                                
                                             </div>
                                         </div>
 

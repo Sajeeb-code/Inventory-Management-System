@@ -28,7 +28,7 @@ class ProductController extends Controller
     //view all product
     public function allProduct()
     {
-        $allProducts = Product::all();
+        $allProducts = Product::latest()->get();
 
         return view('product.all_product',compact('allProducts'));
     }

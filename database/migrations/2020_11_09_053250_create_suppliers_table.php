@@ -17,7 +17,7 @@ class CreateSuppliersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->nullable();
-            $table->unsignedBigInteger('phone');
+            $table->string('phone');
             $table->string('address');
             $table->string('shop_name')->nullable();
             $table->string('type');
@@ -25,7 +25,7 @@ class CreateSuppliersTable extends Migration
             $table->string('bank_name')->nullable();
             $table->string('bank_branch')->nullable();
             $table->string('account_holder')->nullable();
-            $table->unsignedBigInteger('account_no')->nullable();
+            $table->string('account_no')->nullable();
             $table->string('city')->nullable();
             $table->timestamps();
         });

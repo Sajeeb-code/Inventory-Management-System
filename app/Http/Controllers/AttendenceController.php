@@ -39,7 +39,7 @@ class AttendenceController extends Controller
                     'empl_id'=>$id,
                     'att_date'=>$request->att_date,
                     'att_year'=>$request->att_year,
-                    'att_month'=>$request->att_month,
+                    'att_month'=>date('F'),
                     'attendence'=>$request->attendence[$id],
                     'edit_date'=>date('d_m_Y')
 
@@ -109,5 +109,33 @@ class AttendenceController extends Controller
                             ->where('edit_date',$edit_date)
                             ->get();
         return view('attendence.viewAttendence',compact('viewAttendence','data'));
+    }
+
+    //attendence report
+    public function molthlyAttendanceReport()
+    {
+        $attMonth = date('F');
+        $attendenceReport = DB::table('attendences')->where('att_month',$attMonth)->first();
+
+        $viewAllMonthAttendence = DB::table('attendences')
+                            ->join('employees','attendences.empl_id','employees.id')
+                            ->select('employees.name','employees.photo','attendences.*')
+                            ->where('att_month',$attMonth)
+                            ->latest()
+                            ->get();
+
+
+        $pres = 'Present';
+        $ab = 'Absent';
+        $present = DB::table('attendences')
+                        ->join('employees','attendences.empl_id','employees.id')
+                        ->select('employees.name','employees.photo','attendences.attendence')
+                        ->where('att_month',$attMonth)
+                        ->where('attendence',$pres)
+                        ->where('empl_id',3)
+                        ->count('attendence');
+
+
+        return view('attendence.monthlyAttendence',compact('viewAllMonthAttendence','attendenceReport'));
     }
 }

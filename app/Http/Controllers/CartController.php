@@ -29,8 +29,15 @@ class CartController extends Controller
     //update cart
     public function cardUpdate(Request $request,$rowId )
     {
+       
         $qtydata = array();
         $qtydata['qty'] = $request->qty;
+
+         $this->validate($request,[
+            'qty'=>'required|max:3',
+        ]);
+
+
         Cart::update($rowId, $qtydata);
 
         return redirect()->back();
@@ -77,6 +84,7 @@ class CartController extends Controller
         $data['payment_status']= $request->payment_status;
         $data['pay']= $request->pay;
         $data['due']= $request->due;
+        $data['month']= date('F');
 
         $order_id = DB::table('orders')->insertGetId($data);
         $contents = Cart::content();
@@ -89,11 +97,13 @@ class CartController extends Controller
             $orderData['unitcost'] = $content->price;
             $orderData['total'] = $content->total;
             $orderData['order_date'] = date('d/m/y');
+            $orderData['month'] = date('F');
 
             DB::table('orderdetails')->insert($orderData);
         }
 
         Cart::destroy();
+        
         return redirect('/pos')->with('message','successfully invoice done. Please deliver the product..');
 
         // echo "<pre>";

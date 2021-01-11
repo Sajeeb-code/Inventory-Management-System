@@ -158,7 +158,7 @@
                         <span class="text-danger"><b>Products</b></span>
                        <div class="row port">
                            @php
-                               $products = DB::table('products')->get();
+                               $products = DB::table('products')->latest()->limit(8)->get();
                            @endphp
                            @foreach ($products as $item)
                             <div class="portfolioContainer">

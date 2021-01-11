@@ -54,7 +54,7 @@ class SalaryController extends Controller
         $salary = DB::table('salaries')
                     ->join('employees','salaries.employee_id','employees.id')
                     ->select('salaries.*','employees.name','employees.photo','employees.salary')
-                    ->orderBy('id','DESC')
+                    ->latest()
                     ->get();
         return view('salary.all_advance_salary',compact('salary'));
     }
@@ -80,7 +80,7 @@ class SalaryController extends Controller
          $salary = DB::table('salaries')
                     ->join('employees','salaries.employee_id','employees.id')
                     ->select('salaries.*','employees.name','employees.photo','employees.salary')
-                    ->orderBy('id','DESC')
+                    ->latest()
                     ->get();
         // return view('salary.all_advance_salary',compact('salary'));
         return view('salary.pay_salary',compact('salary'));
@@ -102,7 +102,7 @@ class SalaryController extends Controller
             // $data['year'] = $request->year;
 
             $advanced = DB::table('paysalaries')->insert($data);
-            return redirect()->route('add.advance.salary')->with('message',' Salary Paid Successfully');
+            return redirect()->back()->with('message',' Salary Paid Successfully');
         }
         else{
             return redirect()->back()->with('error','Already  Paid the Salary in this Month');
@@ -114,7 +114,7 @@ class SalaryController extends Controller
         $salary = DB::table('paysalaries')
                     ->join('employees','paysalaries.employees_id','employees.id')
                     ->select('paysalaries.*','employees.name','employees.photo','employees.salary')
-                    ->orderBy('id','DESC')
+                    ->latest()
                     ->get();
         return view('salary.salary_paid',compact('salary'));
     }

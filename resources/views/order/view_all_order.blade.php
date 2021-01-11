@@ -11,7 +11,7 @@
                             <div class="col-md-12">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                      <h2>Pending Order List</h2>
+                                      <h2>All Order List</h2>
                                         <h5 class="pull-right">{{ date(' d F Y') }}</h5>
                                     </div>
                                     @if(session()->has('message'))
@@ -30,7 +30,7 @@
                                                             <th>Quantity</th>
                                                             <th>Total</th>
                                                             <th>Payment Status</th>
-                                                            <th>Order Status</th>
+                                                            
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -44,10 +44,9 @@
                                                                 <td>{{ $row->total_products}}</td>
                                                                 <td>{{ $row->total }}</td>
                                                                 <td>{{ $row->payment_status }}</td>
-                                                                <td><span class="badge badge-secondary">{{ $row->order_status }}</span></td>
+                                                               
                                                                 <td>
-                                                                 
-                                                                    <a href="{{ ('view-order-status/'.$row->o_id) }}" class="btn btn-sm btn-danger" id="delete">View</a>
+                                                                  <a href="{{ ('view-order/'.$row->o_id) }}" class="btn btn-sm btn-danger" id="delete">Details</a>
                                                                 </td>
                                                             </tr>
                                                        @endforeach

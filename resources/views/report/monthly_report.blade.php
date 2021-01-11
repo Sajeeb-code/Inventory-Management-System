@@ -10,6 +10,11 @@
                 <div class="content">
                     <div class="container">
 
+                     
+                       @php
+                            $monthlyIncome = date('F');
+                            $thismonthIncome = DB::table('orderdetails')->where('month',$monthlyIncome)->sum('total');
+                      @endphp
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12">
@@ -21,46 +26,76 @@
                             <div class="col-md-12">
                                 <div class="panel panel-default">
                                    
-                                    
+                                    @php
+                                        $com_name = DB::table('settings')->first();
+                                    @endphp
                                     <div class="panel-body">
                                         <div class="clearfix">
                                             <div class="pull-left">
-                                                @php
-                                                     $cname = DB::table('settings')->first();
-                                                @endphp
-                                                <h2 class="text-right text-uppercase">{{ $cname->company_name }}</h2>
+                                                <h3>{{ $com_name->company_name }}</h3>
                                                 
                                             </div>
+                                            @php
+                                                $todaydate = date('d/m/y');
+                                                $detailsdate = DB::table('orders')->where('order_date',$todaydate)->get();
+                                            @endphp
                                             <div class="pull-right">
-                                                <h4>Order Date <br>
-                                                    <strong>{{ $order->order_date }}</strong>
+                                                <h4> Date <br>
+                                                    <strong>{{ $todaydate }}</strong>
                                                 </h4>
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                
-                                                <div class="pull-left m-t-30">
-                                                    <address>
-                                                      <strong> Name : {{ $order->name }}</strong><br>
-                                                      E-mail : {{ $order->email }} <br>
-                                                      Address: {{ $order->address }}<br>
-                                                      City: {{ $order->city }}<br>
-                                                      Phone{{$order->phone}}
-                                                      <br>
-                                                      Shop Name : {{ $order->shop_name }}
-                                                      </address>
+                                                <span>Customer Section</span>
+                                                <div class="table-responsive">
+                                                    <table class="table m-t-30">
+                                                        <thead>
+                                                            <tr><th>#</th>
+                                                            <th>Customer Name</th>
+                                                            <th>Customer Address</th>
+                                                            <th>Phone</th>
+                                                            <th>Payment Method</th>
+                                                            <th>Total</th>
+                                                            <th>Pay</th>
+                                                            <th>Due</th>
+                                                        </tr></thead>
+                                                        <tbody>
+                                                            @php
+                                                                $sl = 1;
+                                                            @endphp
+                                                            @foreach ($order_details as $item)
+                                                            <tr>
+                                                                <td>{{ $sl++ }}</td>
+                                                                <td>{{ $item->name }}</td>
+                                                                <td>{{ $item->address }}</td>
+                                                                <td>{{ $item->phone }}</td>
+                                                                <td>{{ $item->payment_status }}</td>
+                                                                <td>{{ $item->total }}</td>
+                                                                <td>{{ $item->pay }}</td>
+                                                                <td>{{ $item->due }}</td>
+                                                            </tr>
+                                                            @endforeach
+                                                            
+                                                          
+                                                        </tbody>
+                                                        
+                                                    </table>
                                                 </div>
-                                                <div class="pull-right m-t-30">
-                                                    <p><strong> Date: </strong> {{ date('d,F y') }}</p>
-                                                    
-                                                </div>
+                                                <hr><hr>
+                                                 <strong>Total: <p class="pull-right">{{ $thismonthIncome }}</p></strong>
                                             </div>
                                         </div>
+
+
+
+
+
                                         <div class="m-h-50"></div>
                                         <div class="row">
                                             <div class="col-md-12">
+                                                <span>Product Section</span>
                                                 <div class="table-responsive">
                                                     <table class="table m-t-30">
                                                         <thead>
@@ -75,14 +110,14 @@
                                                             @php
                                                                 $sl = 1;
                                                             @endphp
-                                                            @foreach ($orderDetails as $item)
+                                                            @foreach ($products_details as $prod)
                                                             <tr>
                                                                 <td>{{ $sl++ }}</td>
-                                                                <td>{{ $item->product_name }}</td>
-                                                                <td>{{ $item->product_code }}</td>
-                                                                <td>{{ $item->quantity }}</td>
-                                                                <td>{{ $item->unitcost }}</td>
-                                                                <td>{{ $item->unitcost*$item->quantity }}</td>
+                                                                <td>{{ $prod->product_name }}</td>
+                                                                <td>{{ $prod->product_code }}</td>
+                                                                <td>{{ $prod->quantity }}</td>
+                                                                <td>{{ $prod->unitcost }}</td>
+                                                                <td>{{ $prod->unitcost*$prod->quantity }}</td>
                                                             </tr>
                                                             @endforeach
                                                             
@@ -92,32 +127,18 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row" style="border-radius: 0px;">
-                                            <br>
-                                            <div class="col-md-9">
-                                                <h3>Payment Status: {{ $order->payment_status }}</h3>
-                                                <h4>Pay Amount: {{ $order->pay }}</h4>
-                                                <h4>Due amount: {{ $order->due }}</h4>
-                                            </div>
-                                            <div class="col-md-3 ">
-                                                <p class="text-right"><b>Sub-total:</b> {{ $order->sub_total }}</p>
-                                                <p class="text-right">VAT:  {{ $order->vat }}</p>
-                                                <hr>
-                                                <h3 class="text-right">Total  {{ $order->total }} </h3>
-                                            </div>
-                                        </div>
+                                       
                                         <hr>
-                                         @if( $order->order_status == 'success')
-                                            @else
+                                       
+                                           
                                             <div class="hidden-print">
                                                  <div class="pull-right">
                                                     <a href="#" onclick="window.print()" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i></a>
-                                                    {{-- <a href="{{ url('orderList_pdf/pdf') }}" class="btn pull-right btn-primary waves-effect waves-light"
-                                                    ><i class="far fa-file-pdf"></i> PDF</a> --}}
+                                                    
                                                 </div>
                                                
                                             </div>
-                                         @endif
+                                       
                                     </div>
                                 </div>
 

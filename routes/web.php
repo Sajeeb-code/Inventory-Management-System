@@ -8,6 +8,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\PosController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfitController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SupplierController;
@@ -20,7 +21,7 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Auth::routes();
+Auth::routes(['register'=> false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -38,6 +39,9 @@ Route::get('/delete-employee/{id}',[EmployeeController::class,'deleteEmployee'])
 Route::get('/edit-employee/{id}',[EmployeeController::class,'editEmployee']);
 
 Route::put('/update-employee/{id}',[EmployeeController::class,'updateEmployee']);
+
+
+Route::get('dynamic_pdf/pdf',[EmployeeController::class,'pdf']);
 
 //customer route
 Route::get('/add-customer',[CustomerController::class,'addCustomer'])->name('add.customer');
@@ -165,6 +169,8 @@ Route::get('/edit-attendence/{edit_date}',[AttendenceController::class,'editAtte
 
 Route::put('/update-attendence',[AttendenceController::class,'updateAttendence']);
 
+Route::get('/monthly-attendence0report',[AttendenceController::class,'molthlyAttendanceReport'])->name('monthly.attendence');
+
 //settings route
 Route::get('/web-settings',[SettingController::class,'settings'])->name('settings');
 
@@ -175,13 +181,26 @@ Route::put('/update-website-setting/{id}',[SettingController::class,'updateSetin
 //pos route
 Route::get('/pos',[PosController::class,'Pos'])->name('pos');
 //pending order
-Route::get('/pending-order',[PosController::class,'pendingOrder'])->name('pending.order');
+// Route::get('/pending-order',[PosController::class,'pendingOrder'])->name('pending.order');
 
-Route::get('/view-order-status/{id}',[PosController::class,'viewOrder']);
+Route::get('/view-order/{id}',[PosController::class,'viewOrder']);
 
-Route::get('/approve-pending/{id}',[PosController::class,'approvePending']);
 
-Route::get('/success-order',[PosController::class,'successOrder'])->name('success.order');
+
+
+
+Route::get('/view-all-order',[PosController::class,'viewAllOrder'])->name('view.order');
+
+Route::get('/orderList_pdf/pdf',[PosController::class,'order_list_pdf']);
+
+
+
+
+
+
+// Route::get('/approve-pending/{id}',[PosController::class,'approvePending']);
+
+// Route::get('/success-order',[PosController::class,'successOrder'])->name('success.order');
 
 
 //cart route
@@ -193,7 +212,18 @@ Route::get('/cart-remove/{rowId}',[CartController::class,'cardRemove']);
 
 Route::post('/create-invoice',[CartController::class,'CreateInvoice']);
 
-Route::post('//make-invoice',[CartController::class,'makeInvoice']);
+Route::post('/make-invoice',[CartController::class,'makeInvoice']);
+
+
+
+Route::get('/view-order/{id}',[PosController::class,'viewOrder']);
+
+
+
 
 //report
 Route::get('/daily-report',[PosController::class,'dailyReport'])->name('daily.report');
+Route::get('/monthly-report',[PosController::class,'monthlyReport'])->name('monthly.report');
+
+Route::get('/monthly-profit',[ProfitController::class,'monthly_profit'])->name('monthly.profit');
+

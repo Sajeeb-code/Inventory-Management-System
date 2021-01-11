@@ -33,8 +33,11 @@
                                     @endphp
                                     <div class="panel-body">
                                         <div class="clearfix">
+                                            @php
+                                                $com_name = DB::table('settings')->first();
+                                            @endphp
                                             <div class="pull-left">
-                                                <h4 class="text-right"><img src="images/logo_dark.png" alt="velonic"></h4>
+                                                <h4>{{ $com_name->company_name }}</h4>
                                                 
                                             </div>
                                             <div class="pull-right">
@@ -60,8 +63,8 @@
                                                 </div>
                                                 <div class="pull-right m-t-30">
                                                     <p><strong>Order Date: </strong> {{ date('d,F y') }}</p>
-                                                    <p class="m-t-10"><strong>Order Status: </strong> <span class="label label-pink">Pending</span></p>
-                                                    <p class="m-t-10"><strong>Order ID: </strong> #123456</p>
+                                                    {{-- <p class="m-t-10"><strong>Order Status: </strong> <span class="label label-pink">Pending</span></p> --}}
+                                                    {{-- <p class="m-t-10"><strong>Order ID: </strong> #123456</p> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -104,7 +107,7 @@
                                         <div class="row" style="border-radius: 0px;">
                                             <div class="col-md-3 col-md-offset-9">
                                                 <p class="text-right"><b>Sub-total:</b> {{ Cart::subtotal() }}</p>
-                                                <p class="text-right">Discout:  {{ Cart::discount() }}</p>
+                                                {{-- <p class="text-right">Discout:  {{ Cart::discount() }}</p> --}}
                                                 <p class="text-right">VAT:  {{ Cart::tax() }}</p>
                                                 <hr>
                                                 <h3 class="text-right">Total  {{ Cart::total() }} </h3>
@@ -115,7 +118,7 @@
                                             <div class="pull-right">
                                                 <a href="#" onclick="window.print()" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i></a>
                                                 <a href="#" class="btn pull-right btn-primary waves-effect waves-light"
-                                                data-toggle="modal" data-target="#con-close-modal">Submit</a>
+                                                data-toggle="modal" data-target="#con-close-modal">Pay Amount</a>
                                             </div>
                                         </div>
                                     </div>
@@ -171,30 +174,32 @@
                                     <div class="col-md-4"> 
                                         <div class="form-group"> 
                                             <label for="field-4" class="control-label">Payment *</label> 
-                                            <select name="payment_status" id="" class="form-control">
+                                            <select name="payment_status" id="" class="form-control" required>
                                                 <option value="HandCash">Hand Cash</option>
-                                                <option value="Chack">Chack</option>
+                                                <option value="Chack">Cheque</option>
                                                 <option value="Card">Card</option>
                                             </select>
                                         </div> 
                                     </div> 
+                                    
                                     <div class="col-md-4"> 
                                         <div class="form-group"> 
                                             <label for="field-5" class="control-label">Pay</label> 
-                                            <input type="text" class="form-control" id="field-5" name="pay" placeholder="pay amount "> 
+                                            <input type="number" class="form-control" id="field-5"  name="pay" placeholder="pay amount " required> 
                                         </div> 
                                     </div> 
                                     <div class="col-md-4"> 
                                         <div class="form-group"> 
                                             <label for="field-6" class="control-label">Due</label> 
-                                            <input type="text" class="form-control" id="field-6" name="due" placeholder="due amount" > 
-                                           
+                                            <input type="text" class="form-control" id="field-6" name="due" placeholder="due amount"  > 
+                                            {{-- <p class="form-control" value="{{ Cart::total() - 3 }}"></p> --}}
                                         </div> 
-                                    </div> 
+                                    </div>
+                                        
                                 </div>
                                 <input type="hidden" name="customer_id" value="{{ $customer->id }}">
                                 <input type="hidden" name="order_date" value="{{ date('d/m/y') }}">
-                                <input type="hidden" name="order_status" value="pending">
+                                <input type="hidden" name="order_status" value="success">
                                 <input type="hidden" name="total_products" value="{{ Cart::count() }}">
                                 <input type="hidden" name="sub_total" value="{{ Cart::subtotal() }}">
                                 <input type="hidden" name="vat" value="{{ Cart::tax() }}">
@@ -209,4 +214,7 @@
                     </div>
                 </div><!-- /.modal -->
             </form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
 @endsection

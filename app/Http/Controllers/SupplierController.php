@@ -71,7 +71,7 @@ class SupplierController extends Controller
     //view all suppliers
     public function allSupplier()
     {
-         $suppliers = Supplier::all();
+         $suppliers = Supplier::latest()->get();
         return view('supplier.all_Supplier',compact('suppliers'));
     }
     //view single supplier

@@ -36,7 +36,7 @@ class CategoryController extends Controller
     //view category
     public function allCategory()
     {
-        $category = Category::all();
+        $category = Category::latest()->get();
 
         return view('category.all_category',compact('category'));
     }

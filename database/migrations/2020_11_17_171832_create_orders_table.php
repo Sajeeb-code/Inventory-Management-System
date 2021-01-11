@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('o_id');
             $table->integer('customer_id');
             $table->string('order_date');
+            $table->string('month');
             $table->string('order_status');
             $table->string('total_products');
             $table->string('sub_total');

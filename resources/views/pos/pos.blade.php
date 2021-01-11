@@ -41,7 +41,7 @@
                                                     <tr>
                                                         <th class="text-white">Name</th>
                                                         <th class="text-white">Qty</th>
-                                                        <th class="text-white">Price(1)</th>
+                                                        <th class="text-white">Price</th>
                                                         <th class="text-white">Sub Total</th>
                                                         <th class="text-white">Action</th>
                                                     </tr>
@@ -78,7 +78,7 @@
                                             <p >Sub Total: {{ Cart::subtotal() }}</p>
                                            
                                             <p >Vat: {{ Cart::tax() }}</p>
-                                            <p >Discount: {{ Cart::discount() }}</p>
+                                            {{-- <p >Discount: {{ Cart::discount() }}</p> --}}
                                             <hr>
                                             <span class="name">Total: {{ Cart::total() }} Taka</span>
 
@@ -96,7 +96,7 @@
                                                 </ul>
                                             </div>
                                             
-                                        @endif
+                                            @endif
                                             <h4>Select Customer
                                                     <a href="#" class="btn btn-sm pull-right btn-primary waves-effect waves-light"
                                                 data-toggle="modal" data-target="#con-close-modal">Add New</a>
@@ -127,6 +127,7 @@
                                             <th>Add to Cart</th>
                                             <th>Image</th>
                                             <th>Product Name</th>
+                                            <th>Price</th>
                                             <th>Product Code</th>
                                             <th>Category</th>
                                         </tr>
@@ -151,6 +152,7 @@
                                                     <img src="{{ asset('images/product') }}/{{ $product->product_image }}" style="height: 70px; width:80px;" class="annonce-img">
                                                 </td>
                                                 <td>{{ $product->product_name }}</td>
+                                                <td>{{ $product->selling_price }}</td>
                                                 <td>{{ $product->product_code }}</td>
                                                 <td>{{ $product->category_name }}</td>
 

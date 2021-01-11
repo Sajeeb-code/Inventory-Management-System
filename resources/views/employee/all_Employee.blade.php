@@ -12,6 +12,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <a href="{{ route('add.employee') }}" class="btn btn-primary">Add New</a>
+                                        <a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-danger pull-right"><i class="far fa-file-pdf"></i> Make it PDF</a>
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">
@@ -23,6 +24,7 @@
                                                             <th>Email</th>
                                                             <th>Phone</th>
                                                             <th>Address</th>
+                                                            <th>Salary</th>
                                                             <th>Image</th>
                                                             <th>Action</th>
                                                         </tr>
@@ -36,13 +38,14 @@
                                                                 <td>{{ $employee->email }}</td>
                                                                 <td>{{ $employee->phone }}</td>
                                                                 <td>{{ $employee->address }}</td>
+                                                                <td>{{ $employee->salary }}</td>
                                                                 <td>
                                                                     <img src="{{ asset('images/employee') }}/{{ $employee->photo }}" style="height: 70px; width:80px;" class="annonce-img">
                                                                 </td>
                                                                 <td>
                                                                     <a href="{{ 'view-employee/'.$employee->id }}" class="btn btn-sm btn-primary">Details</a>
                                                                     <a href="{{ 'edit-employee/'.$employee->id }}" class="btn btn-sm btn-info">Edit</a>
-                                                                    <a href="{{ ('delete-employee/'.$employee->id) }}" class="btn btn-md btn-danger" id="delete">Delete</a>
+                                                                    <a href="{{ ('delete-employee/'.$employee->id) }}" class="btn btn-sm btn-danger" id="delete">Delete</a>
                                                                 </td>
                                                             </tr>
                                                        @endforeach
@@ -69,7 +72,7 @@
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                    2015 © Moltran.
+                    POS Project 2020
                 </footer>
 
             </div>

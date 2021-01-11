@@ -45,8 +45,8 @@
                                                                 
                                                                 <td>
                                                                     <a href="{{ 'view-employee/'.$row->id }}" class="btn btn-sm btn-primary">Details</a>
-                                                                    <a href="{{ 'edit-employee/'.$row->id }}" class="btn btn-sm btn-info">Edit</a>
-                                                                    <a href="{{ ('delete-employee/'.$row->id) }}" class="btn btn-md btn-danger" id="delete">Delete</a>
+                                                                    {{-- <a href="{{ 'edit-employee/'.$row->id }}" class="btn btn-sm btn-info">Edit</a>
+                                                                    <a href="{{ ('delete-employee/'.$row->id) }}" class="btn btn-md btn-danger" id="delete">Delete</a> --}}
                                                                 </td>
                                                             </tr>
                                                        @endforeach
