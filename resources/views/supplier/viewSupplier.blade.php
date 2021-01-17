@@ -40,31 +40,18 @@
                                                     <label for="address"> Address</label>
                                                    <p>{{ $single->address }}</p>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="experience">Shop Name</label>
-                                                    <p>{{ $single->shop_name }}</p>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="bank_name">Bank Name</label>
-                                                    <p>{{ $single->bank_name }}</p>
-                                                </div>
+                                                
+                                               
                                                 
                                                  
                                                  
                                             </div>
                                             <div class="col-md-5">
                                                     <div class="form-group">
-                                                        <label for="bank_branch">Bank Bannch</label>
-                                                        <p>{{ $single->bank_branch }}</p>
+                                                        <label for="experience">Company/Shop Name</label>
+                                                        <p>{{ $single->shop_name }}</p>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="account_holder">Account holder</label>
-                                                        <p>{{ $single->account_holder }}</p>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="account_no">Account No.</label>
-                                                        <p>{{ $single->account_no }}</p>
-                                                    </div>
+                                                   
                                                      <div class="form-group">
                                                         <label for="nid_no">Suppliers Type</label>
                                                         <p>{{ $single->type }}</p>

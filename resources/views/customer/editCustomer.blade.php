@@ -45,7 +45,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Email address</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter email" required value="{{ $edit->email }}">
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter email" value="{{ $edit->email }}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="phone">Phone No.</label>
@@ -53,16 +53,10 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="address"> Address</label>
-                                                    <input type="text" class="form-control" id="address" name="address" placeholder="Address"  value="{{ $edit->address }}">
+                                                    <input type="text" class="form-control" id="address" name="address" placeholder="Address"  value="{{ $edit->address }}" required>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="shop_name">Shop Name</label>
-                                                    <input type="text" class="form-control" id="shop_name name="shop_name placeholder="shop_name"  value="{{ $edit->shop_name }}">
-                                                </div>
-                                                  <div class="form-group">
-                                                    <label for="bank_name">Bank Name</label>
-                                                    <input type="text" class="form-control" id="bank_name" name="bank_name" placeholder="bank_name" value="{{ $edit->bank_name }}">
-                                                </div>
+                                               
+                        
                                                 
                                                  <button type="submit" class="btn btn-purple waves-effect waves-light" value="submit">Update Customer</button>
                                                  
@@ -70,25 +64,13 @@
                                             <div class="col-md-5">
 
                                                     <div class="form-group">
-                                                        <label for="bank_branch">Bank Branch</label>
-                                                        <input type="text" class="form-control" id="bank_branch" name="bank_branch" placeholder="bank_branch"  value="{{ $edit->bank_branch }}">
-                                                     </div>
-                                                     <div class="form-group">
-                                                        <label for="account_holder">Account Holder Branch</label>
-                                                        <input type="text" class="form-control" id="account_holder" name="account_holder" placeholder="account_holder"  value="{{ $edit->account_holder }}">
-                                                     </div>
-                                                     <div class="form-group">
-                                                        <label for="account_no">Account No.</label>
-                                                        <input type="text" class="form-control" id="account_no" name="account_no" placeholder="account_no"  value="{{ $edit->account_no }}">
-                                                     </div>
-                                                     <div class="form-group">
-                                                        <label for="nid_no">NID NO.</label>
-                                                        <input type="text" class="form-control" id="nid_no" name="nid_no" placeholder="national id no" required value="{{ $edit->nid_no }}">
+                                                        <label for="shop_name">Shop Name</label>
+                                                        <input type="text" class="form-control" id="shop_name name="shop_name placeholder="shop_name"  value="{{ $edit->shop_name }}">
                                                     </div>
                                                    
                                                     <div class="form-group">
                                                         <label for="city">City</label>
-                                                        <input type="text" class="form-control" id="city" name="city" placeholder="city" required value="{{ $edit->city }}">
+                                                        <input type="text" class="form-control" id="city" name="city" placeholder="city"  value="{{ $edit->city }}">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="file" style="cursor: pointer;">Photo</label>

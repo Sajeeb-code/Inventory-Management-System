@@ -73,17 +73,21 @@ class CartController extends Controller
     //make invoice
     public function makeInvoice(Request $request)
     {
+        $request->validate([
+            'payment_status'=> 'required',
+            'pay'=>'required'
+        ]);
         $data = array();
         $data['customer_id']= $request->customer_id;
         $data['order_date']= $request->order_date;
         $data['order_status']= $request->order_status;
         $data['total_products']= $request->total_products;
         $data['sub_total']= $request->sub_total;
-        $data['vat']= $request->vat;
-        $data['total']= $request->total;
+        // $data['vat']= $request->vat;
+        // $data['total']= $request->total;
         $data['payment_status']= $request->payment_status;
         $data['pay']= $request->pay;
-        $data['due']= $request->due;
+        // $data['due']= $request->due;
         $data['month']= date('F');
 
         $order_id = DB::table('orders')->insertGetId($data);

@@ -12,6 +12,11 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                        <a href="{{ route('add.supplier') }}" class="btn btn-primary">Add New</a>
+                                        @if(session()->has('message'))
+                                            <div class="alert alert-danger">
+                                                {{ session()->get('message') }}
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">

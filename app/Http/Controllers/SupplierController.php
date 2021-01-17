@@ -28,14 +28,12 @@ class SupplierController extends Controller
         $request->validate([
                 'name' => 'required|max:255',
                 'email' => 'bail|unique:suppliers',
-                'phone' => 'required|min:11',
+                'phone' => 'required|regex:/(01)[0-9]{9}/',
                 'type' => 'required|max:20',
                 'address' => 'required',
-                
-                'city' => 'required',
-                'shop_name' => 'required|max:50',
-                
-                'photo' => 'required|mimes:jpeg,png|max:2048'
+                'city' => 'max:20',
+                'shop_name' => 'max:50',
+                'photo' => 'mimes:jpeg,png|max:2048'
      ]);
        
        $supplier = new Supplier();
@@ -46,10 +44,6 @@ class SupplierController extends Controller
        $supplier->address = $request->address;
        $supplier->type = $request->type;
        $supplier->shop_name = $request->shop_name;
-       $supplier->bank_name = $request->bank_name;
-       $supplier->account_holder = $request->account_holder;
-       $supplier->account_no = $request->account_no;
-       $supplier->bank_branch = $request->bank_branch;
        $supplier->city = $request->city;
 
        if($request->hasfile('photo')){
@@ -92,7 +86,7 @@ class SupplierController extends Controller
 
        $deleteAll->delete();
 
-       return redirect()->back();
+        return redirect()->back()->with('message','Supplier Deleted Successfully');
     }
     // supplier edit
     public function editSupplier($id)
@@ -110,8 +104,8 @@ class SupplierController extends Controller
             'phone' => 'required|min:11',
             'type' => 'required',
             'address' => 'required',
-            'account_no'=>'max:15',
-            'city' => 'required',
+            
+            'city' => 'max:20',
             'shop_name' => 'max:50',
             
             'photo' => 'mimes:jpeg,png|max:2048'
@@ -125,10 +119,6 @@ class SupplierController extends Controller
        $supplier->address = $request->address;
        $supplier->type = $request->type;
        $supplier->shop_name = $request->shop_name;
-       $supplier->bank_name = $request->bank_name;
-       $supplier->account_holder = $request->account_holder;
-       $supplier->account_no = $request->account_no;
-       $supplier->bank_branch = $request->bank_branch;
        $supplier->city = $request->city;
 
         if($request->hasfile('photo')){

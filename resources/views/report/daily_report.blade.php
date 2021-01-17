@@ -33,6 +33,7 @@
                                             @php
                                                 $todaydate = date('d/m/y');
                                                 $detailsdate = DB::table('orders')->where('order_date',$todaydate)->get();
+                                                $totaldailysale = DB::table('orders')->where('order_date',$todaydate)->sum('pay');
                                             @endphp
                                             <div class="pull-right">
                                                 <h4> Date <br>
@@ -54,7 +55,7 @@
                                                             <th>Payment Method</th>
                                                             <th>Total</th>
                                                             <th>Pay</th>
-                                                            <th>Due</th>
+                                                            {{-- <th>Due</th> --}}
                                                         </tr></thead>
                                                         <tbody>
                                                             @php
@@ -67,15 +68,17 @@
                                                                 <td>{{ $item->address }}</td>
                                                                 <td>{{ $item->phone }}</td>
                                                                 <td>{{ $item->payment_status }}</td>
-                                                                <td>{{ $item->total }}</td>
+                                                                <td>{{ $item->sub_total }}</td>
                                                                 <td>{{ $item->pay }}</td>
-                                                                <td>{{ $item->due }}</td>
+                                                                {{-- <td>{{ $item->due }}</td> --}}
                                                             </tr>
                                                             @endforeach
                                                             
                                                            
                                                         </tbody>
                                                     </table>
+                                                    <hr>
+                                                    <h3 class="pull-right">Total: {{ $totaldailysale }}</h3>
                                                 </div>
                                                 <hr>
                                                 

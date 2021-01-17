@@ -21,11 +21,11 @@ class CreateOrdersTable extends Migration
             $table->string('order_status');
             $table->string('total_products');
             $table->string('sub_total');
-            $table->string('vat');
-            $table->string('total');
+            // $table->string('vat');
+            // $table->string('total');
             $table->string('payment_status');
-            $table->string('pay')->nullable();
-            $table->string('due')->nullable();
+            $table->string('pay');
+            // $table->string('due')->nullable();
             $table->timestamps();
         });
     }

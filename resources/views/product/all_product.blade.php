@@ -12,6 +12,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                        <a href="{{ route('add.product') }}" class="btn btn-primary">Add New Product</a>
+                                       <a href="{{ route('export') }}" class="btn btn-success " >Download Xlsx File</a>
                                         <h5 class="pull-right">{{ date(' d F Y') }}</h5>
                                     </div>
                                     <div class="panel-body">
@@ -22,8 +23,8 @@
                                                         <tr>
                                                             <th>Product Name</th>
                                                             <th>Product Code</th>
-                                                            <th>Product WareHouse</th>
-                                                            <th>Product Route</th>
+                                                            <th>Product Description</th>
+                                                            
                                                             <th>Image</th>
                                                             <th>Selling Price</th>
                                                             <th>Action</th>
@@ -36,8 +37,8 @@
                                                             <tr>
                                                                 <td>{{ $product->product_name }}</td>
                                                                 <td>{{ $product->product_code }}</td>
-                                                                <td>{{ $product->product_wareHouse }}</td>
-                                                                <td>{{ $product->product_route }}</td>
+                                                                <td>{{ $product->product_description }}</td>
+                                                                
                                                                 <td>
                                                                     <img src="{{ asset('images/product') }}/{{ $product->product_image }}" style="height: 70px; width:80px;" class="annonce-img">
                                                                 </td>

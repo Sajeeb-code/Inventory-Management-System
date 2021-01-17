@@ -32,7 +32,7 @@ class PosController extends Controller
                         ->join('customers','orders.customer_id','customers.id')
                         ->select('customers.name','orders.*')
                         ->where('order_status','success')
-                        ->latest()
+                        ->orderBy('o_id','DESC')
                         ->get();
 
         return view('order.view_all_order',compact('pendingOrder'));
@@ -53,7 +53,8 @@ class PosController extends Controller
                          ->where('order_id',$id)
                          ->latest()
                          ->get();
-        return view('order.view_order',compact('orderDetails','order'));
+        $orderSubTotal = DB::table('orders')->where('orders.o_id',$id)->first();
+        return view('order.view_order',compact('orderDetails','order','orderSubTotal'));
 
         //   echo "<pre>";
         // print_r($order);

@@ -27,14 +27,14 @@ class CustomerController extends Controller
          $request->validate([
                 'name' => 'required|max:255',
                 'email' => 'bail|unique:customers|max:255',
-                'phone' => 'required|min:11',
-                'nid_no' => 'max:20',
+                'phone' => 'required|regex:/(01)[0-9]{9}/',
+                
                 'address' => 'required',
-                'account_no'=>'max:15',
-                'city' => 'required',
+                
+                'city' => 'max:20',
                 'shop_name' => 'max:50',
                 
-                'photo' => 'required|mimes:jpeg,png|max:2048'
+                'photo' => 'mimes:jpeg,png|max:2048'
      ]);
        
        $customer = new Customer();
@@ -43,12 +43,9 @@ class CustomerController extends Controller
        $customer->email = $request->email;
        $customer->phone = $request->phone;
        $customer->address = $request->address;
-       $customer->nid_no = $request->nid_no;
+      
        $customer->shop_name = $request->shop_name;
-       $customer->bank_name = $request->bank_name;
-       $customer->account_holder = $request->account_holder;
-       $customer->account_no = $request->account_no;
-       $customer->bank_branch = $request->bank_branch;
+       
        $customer->city = $request->city;
 
        if($request->hasfile('photo')){
@@ -85,7 +82,7 @@ class CustomerController extends Controller
 
        $deleteAll->delete();
 
-       return redirect()->back();
+       return redirect()->back()->with('message','Customer Deleted Successfully');
     }
     //single view customer
     public function viewCustomer($id)
@@ -106,15 +103,12 @@ class CustomerController extends Controller
     public function updateCustomer(Request $request,$id)
     {
         $validatedData = $request->validate([
-           'name' => 'required|max:255',
+            'name' => 'required|max:255',
             'email' => 'bail|email|unique:customers,email,'.$request->id,
-            'phone' => 'required|min:11',
-            'nid_no' => 'max:20',
+            'phone' => 'required|regex:/(01)[0-9]{9}/',
             'address' => 'required',
-            'account_no'=>'max:15',
-            'city' => 'required',
+            'city' => 'max:20',
             'shop_name' => 'max:50',
-            
             'photo' => 'mimes:jpeg,png|max:2048'
         ]);
         
@@ -124,12 +118,7 @@ class CustomerController extends Controller
        $customer->email = $request->email;
        $customer->phone = $request->phone;
        $customer->address = $request->address;
-       $customer->nid_no = $request->nid_no;
        $customer->shop_name = $request->shop_name;
-       $customer->bank_name = $request->bank_name;
-       $customer->account_holder = $request->account_holder;
-       $customer->account_no = $request->account_no;
-       $customer->bank_branch = $request->bank_branch;
        $customer->city = $request->city;
 
         if($request->hasfile('photo')){

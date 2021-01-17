@@ -42,7 +42,7 @@
                                                                 <td>{{ $row->name }}</td>
                                                                 <td>{{ $row->order_date }}</td>
                                                                 <td>{{ $row->total_products}}</td>
-                                                                <td>{{ $row->total }}</td>
+                                                                <td>{{ $row->sub_total }}</td>
                                                                 <td>{{ $row->payment_status }}</td>
                                                                
                                                                 <td>

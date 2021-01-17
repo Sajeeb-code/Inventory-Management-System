@@ -22,10 +22,10 @@ class CreateSuppliersTable extends Migration
             $table->string('shop_name')->nullable();
             $table->string('type');
             $table->string('photo')->nullable();
-            $table->string('bank_name')->nullable();
-            $table->string('bank_branch')->nullable();
-            $table->string('account_holder')->nullable();
-            $table->string('account_no')->nullable();
+            // $table->string('bank_name')->nullable();
+            // $table->string('bank_branch')->nullable();
+            // $table->string('account_holder')->nullable();
+            // $table->string('account_no')->nullable();
             $table->string('city')->nullable();
             $table->timestamps();
         });

@@ -77,14 +77,14 @@
                                             <p >Quentity: {{ Cart::count() }}</p>
                                             <p >Sub Total: {{ Cart::subtotal() }}</p>
                                            
-                                            <p >Vat: {{ Cart::tax() }}</p>
+                                            {{-- <p >Vat: {{ Cart::tax() }}</p> --}}
                                             {{-- <p >Discount: {{ Cart::discount() }}</p> --}}
                                             <hr>
-                                            <span class="name">Total: {{ Cart::total() }} Taka</span>
+                                            <span class="name">Total: {{ Cart::subtotal() }} Taka</span>
 
                                         </div>
 
-                                <form action="{{ url('/create-invoice') }}" method="POST">
+                                    <form action="{{ url('/create-invoice') }}" method="POST">
                                          @csrf
                                          <div class="panel">
                                              @if($errors->any())
@@ -111,7 +111,7 @@
                                                 </select>
                                         </div>
                                          {{-- <input type="hidden" name="cus_id" value="{{ $cus->id }}"> --}}
-                                </div> <!-- end Pricing_card -->
+                                         </div> <!-- end Pricing_card -->
                                             <button class="btn btn-primary waves-effect  w-md" type="submit">Create Invoice</button>
                                   </form> 
                             </div>
@@ -214,7 +214,7 @@
                                     <div class="col-md-6"> 
                                         <div class="form-group"> 
                                             <label for="field-2" class="control-label">Email </label> 
-                                            <input type="email" class="form-control" id="field-2" name="email" placeholder="Doe"> 
+                                            <input type="email" class="form-control" id="field-2" name="email" placeholder="Doe@gmail.com"> 
                                         </div> 
                                     </div> 
                                 </div> 
@@ -233,56 +233,26 @@
                                     </div> 
                                 </div> 
                                 <div class="row"> 
-                                    <div class="col-md-4"> 
+                                    <div class="col-md-6"> 
                                         <div class="form-group"> 
                                             <label for="field-4" class="control-label">Phone *</label> 
                                             <input type="text" class="form-control" id="field-4" name="phone" placeholder="017XXXXXXXX" required> 
                                         </div> 
                                     </div> 
-                                    <div class="col-md-4"> 
+                                    <div class="col-md-6"> 
                                         <div class="form-group"> 
                                             <label for="field-5" class="control-label">Shop Name</label> 
                                             <input type="text" class="form-control" id="field-5" name="shop_name" placeholder="Shop name "> 
                                         </div> 
                                     </div> 
-                                    <div class="col-md-4"> 
-                                        <div class="form-group"> 
-                                            <label for="field-6" class="control-label">NID No.</label> 
-                                            <input type="text" class="form-control" id="field-6" name="nid_no" placeholder="123456"> 
-                                        </div> 
-                                    </div> 
-                                </div>
-                                <div class="row"> 
-                                    <div class="col-md-4"> 
-                                        <div class="form-group"> 
-                                            <label for="field-4" class="control-label">Bank Name</label> 
-                                            <input type="text" class="form-control" id="field-4" name="bank_name" placeholder="Bank name"> 
-                                        </div> 
-                                    </div> 
-                                    <div class="col-md-4"> 
-                                        <div class="form-group"> 
-                                            <label for="field-5" class="control-label">Bank Branch</label> 
-                                            <input type="text" class="form-control" id="field-5" name="bank_branch" placeholder="Bank Branch "> 
-                                        </div> 
-                                    </div> 
-                                    <div class="col-md-4"> 
-                                        <div class="form-group"> 
-                                            <label for="field-6" class="control-label">Account Holder</label> 
-                                            <input type="text" class="form-control" id="field-6" name="account_holder" placeholder="Holder Name"> 
-                                        </div> 
-                                    </div> 
-                                </div> 
-                                <div class="row"> 
-                                    <div class="col-md-4"> 
-                                        <div class="form-group"> 
-                                            <label for="field-5" class="control-label">Account No.</label> 
-                                            <input type="text" class="form-control" id="field-5" name="account_no" placeholder="Account No."> 
-                                        </div> 
-                                    </div> 
                                    
-                                    <div class="col-md-4"> 
+                                </div>
+                           
+                                <div class="row"> 
+                                   
+                                    <div class="col-md-6"> 
                                         <div class="form-group"> 
-                                            <label for="field-6" class="control-label">Photo</label> 
+                                            <label for="field-6" class="control-label">Photo *</label> 
                                             
                                             <input type="file"  accept="image/*" class="form-control" name="photo" id="field-6"  onchange="loadFile(event)" required>
                                             

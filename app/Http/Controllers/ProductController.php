@@ -40,10 +40,8 @@ class ProductController extends Controller
                 'product_code' => 'bail|required|unique:products',
                 'cat_id' => 'required',
                 'supp_id' => 'required',
-                'product_wareHouse' => 'required',
-                'product_route' => 'required',
+                'product_description' => 'required',
                 'buy_date' => 'required',
-                'expire_date' => 'required',
                 'buying_price' => 'required',
                 'selling_price' => 'required',
                 'product_image' => 'required|mimes:jpeg,png|max:2048'
@@ -55,10 +53,8 @@ class ProductController extends Controller
        $product->product_code = $request->product_code;
        $product->cat_id = $request->cat_id;
        $product->supp_id = $request->supp_id;
-       $product->product_wareHouse = $request->product_wareHouse;
-       $product->product_route = $request->product_route;
+       $product->product_description = $request->product_description;
        $product->buy_date = $request->buy_date;
-       $product->expire_date = $request->expire_date;
        $product->buying_price = $request->buying_price;
        $product->selling_price = $request->selling_price;
 
@@ -121,10 +117,8 @@ class ProductController extends Controller
                 'product_code' => 'bail|required|unique:products,product_code,'.$request->id,
                 'cat_id' => 'required',
                 'supp_id' => 'required',
-                'product_wareHouse' => 'required',
-                'product_route' => 'required',
+                'product_description' => 'required',
                 'buy_date' => 'required',
-                'expire_date' => 'required',
                 'buying_price' => 'required',
                 'selling_price' => 'required',
                 'product_image' => 'mimes:jpeg,png|max:2048'
@@ -135,10 +129,8 @@ class ProductController extends Controller
        $product->product_code = $request->product_code;
        $product->cat_id = $request->cat_id;
        $product->supp_id = $request->supp_id;
-       $product->product_wareHouse = $request->product_wareHouse;
-       $product->product_route = $request->product_route;
+       $product->product_description = $request->product_description;
        $product->buy_date = $request->buy_date;
-       $product->expire_date = $request->expire_date;
        $product->buying_price = $request->buying_price;
        $product->selling_price = $request->selling_price;
 
@@ -157,18 +149,23 @@ class ProductController extends Controller
 
     }
     //export and import products
-    public function importProduct()
-    {
-        return view('product.importProduct');
-    }
+
     public function export() 
     {
         return Excel::download(new ProductsExport, 'products.xlsx');
     }
-    public function import(Request $request)
-    {
-         Excel::import(new ProductsImport, $request->file('import_product'));
+
+
+    // public function importProduct()
+    // {
+    //     return view('product.importProduct');
+    // }
+
+
+    // public function import(Request $request)
+    // {
+    //      Excel::import(new ProductsImport, $request->file('import_product'));
         
-        return redirect('/all-product')->with('message', 'All good!');
-    }
+    //     return redirect('/all-product')->with('message', 'All good!');
+    // }
 }

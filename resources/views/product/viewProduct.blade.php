@@ -17,7 +17,7 @@
                              <div class="col-md-10">
                                 <div class="panel panel-default">
                                     <div class="panel-heading"><h3 class="panel-title">Product details
-                                         <a href="{{ route('import.product') }}" class="btn btn-danger pull-right" >Import Product</a>
+                                         {{-- <a href="{{ route('import.product') }}" class="btn btn-danger pull-right" >Import Product</a> --}}
                                            <a href="{{ route('all.product') }}" class="btn btn-primary pull-right" >All Product</a>
                                     </h3>
                                         <span class="ml-10">{{ date(' d F Y') }}</span>
@@ -35,13 +35,10 @@
                                                     <p>{{ $viewProducts->product_code }}</p>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="product_wareHouse">Product Ware House </label>
-                                                    <p>{{ $viewProducts->product_wareHouse }}</p>
+                                                    <label for="product_wareHouse">Product Description </label>
+                                                    <p>{{ $viewProducts->product_description }}</p>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="product_route"> Product Route </label>
-                                                   <p>{{ $viewProducts->product_route }}</p>
-                                                </div>
+                                               
                                                  <div class="form-group">
                                                         <label >Ctegory Type </label>
                                                        <p>{{ $viewProducts->category_name }}</p>
@@ -59,10 +56,7 @@
                                                         <p>{{ $viewProducts->buy_date }}</p>
                                                      </div>
                                                    
-                                                    <div class="form-group">
-                                                        <label for="expire_date">Expire Date </label>
-                                                        <p>{{ $viewProducts->expire_date }}</p>
-                                                    </div>
+                                                    
                                                     <div class="form-group">
                                                         <label for="buying_price">Buying Price </label>
                                                         <p>{{ $viewProducts->buying_price }}</p>

@@ -38,52 +38,36 @@
                                            {{ csrf_field() }}
                                             <div class="col-md-5">
                                                  <div class="form-group">
-                                                    <label for="name">Full Name</label>
-                                                    <input type="text" class="form-control" id="name" name="name" placeholder="full name" >
+                                                    <label for="name">Full Name *</label>
+                                                    <input type="text" class="form-control" id="name" name="name" placeholder="full name" value="{{ old('name') }}" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Email address</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter email">
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter email" value="{{ old('email') }}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="phone">Phone No.</label>
-                                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="phone number" required>
+                                                    <label for="phone">Phone No. *</label>
+                                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="phone number" required value="{{ old('phone') }}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="address"> Address</label>
-                                                    <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
+                                                    <label for="address"> Address *</label>
+                                                    <input type="text" class="form-control" id="address" name="address" placeholder="Address" required value="{{ old('address') }}">
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="shop_name">Shop Name</label>
-                                                    <input type="text" class="form-control" id="shop_name" name="shop_name" placeholder="Shop name" >
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="bank_name">Bank Name</label>
-                                                    <input type="text" class="form-control" id="bank_name" name="bank_name" placeholder="bank name" >
-                                                </div>
+                                                
                                                 
                                                 
                                                   <button type="submit" class="btn btn-purple waves-effect waves-light" value="submit">Submit</button>
                                             </div>
                                             <div class="col-md-5">
 
+                                                     
+                                                <div class="form-group">
+                                                    <label for="shop_name">Compnay/Shop Name</label>
+                                                    <input type="text" class="form-control" id="shop_name" name="shop_name" placeholder="Shop name" value="{{ old('shop_name') }}">
+                                                </div>
                                                      <div class="form-group">
-                                                            <label for="bank_branch">Bank Bannch</label>
-                                                            <input type="text" class="form-control" id="bank_branch" name="bank_branch" placeholder="bank_branch " >
-                                                     </div>
-                                                
-                                                     <div class="form-group">
-                                                        <label for="account_holder">Account holder</label>
-                                                        <input type="text" class="form-control" id="account_holder" name="account_holder" placeholder="account_holder " >
-                                                     </div>
-                                                     <div class="form-group">
-                                                        <label for="account_no">Account No.</label>
-                                                        <input type="text" class="form-control" id="account_no" name="account_no" placeholder="account_no " >
-                                                     </div>
-                                                
-                                                     <div class="form-group">
-                                                        <label for="nid_no">Supplier Type</label>
-                                                       <select name="type" class="form-control">
+                                                        <label for="nid_no">Supplier Type *</label>
+                                                       <select name="type" class="form-control" value="{{ old('type') }}" required>
                                                            <option value="Distributor">Distributor</option>
                                                            <option value="WholeSaler">Whole Saler</option>
                                                            <option value="Broker">Broker</option>
@@ -92,11 +76,11 @@
                                                     
                                                     <div class="form-group">
                                                         <label for="city">City</label>
-                                                        <input type="text" class="form-control" id="city" name="city" placeholder="city" required>
+                                                        <input type="text" class="form-control" id="city" name="city" placeholder="city" value="{{ old('city') }}">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="file" style="cursor: pointer;">Photo</label>
-                                                       <input type="file"  accept="image/*" name="photo" id="file"  onchange="loadFile(event)" >
+                                                        <label for="file" style="cursor: pointer;">Photo *</label>
+                                                       <input type="file"  accept="image/*" name="photo" id="file"  onchange="loadFile(event)" value="{{ old('photo') }}" required>
                                                        
                                                        <img id="output" width="200" />
                                                     </div>

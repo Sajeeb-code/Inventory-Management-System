@@ -39,43 +39,42 @@
                                             <div class="col-md-5">
                                                  <div class="form-group">
                                                     <label for="product_name">Product Name *</label>
-                                                    <input type="text" class="form-control" id="product_name" name="product_name" placeholder=" product_name" >
+                                                    <input type="text" class="form-control" id="product_name" name="product_name" placeholder=" product_name" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="product_code">Product Code *</label>
                                                     <input type="text" class="form-control" id="product_code" name="product_code" placeholder="Enter product_code" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="product_wareHouse">Product Ware House *</label>
-                                                    <input type="text" class="form-control" id="product_wareHouse" name="product_wareHouse" placeholder="product_wareHouse " required>
+                                                    <label for="product_wareHouse">Product Description</label>
+                                                    {{-- <input type="text" class="form-control" id="product_wareHouse" name="product_wareHouse" placeholder="product_wareHouse " required> --}}
+                                                    <textarea name="product_description" class="form-control" id="" cols="30" rows="10" placeholder="description" required></textarea>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="product_route"> Product Route *</label>
-                                                    <input type="text" class="form-control" id="product_route" name="product_route" placeholder="product_route" required>
-                                                </div>
-                                                @php
-                                                    $cat = DB::table('categories')->get();
-                                                @endphp
                                                 
-                                                 <div class="form-group">
-                                                        <label >Ctegory Type *</label>
-                                                       <select name="cat_id" class="form-control">
-                                                           @foreach($cat as $row)
-                                                                <option value="{{ $row->id }}">{{ $row->category_name }}</option>
-                                                           @endforeach
-                                                       </select>
-                                                    </div><br>
+                                                <br>
                                                  <button type="submit" class="btn btn-purple waves-effect waves-light" value="submit">Submit</button>
                                                  
                                             </div>
                                             <div class="col-md-5">
 
                                                     @php
+                                                        $cat = DB::table('categories')->get();
+                                                    @endphp
+                                                
+                                                        <div class="form-group">
+                                                            <label >Ctegory Type *</label>
+                                                            <select name="cat_id" class="form-control" required>
+                                                                @foreach($cat as $row)
+                                                                        <option value="{{ $row->id }}">{{ $row->category_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    @php
                                                         $sup = DB::table('suppliers')->get();
                                                     @endphp
                                                      <div class="form-group">
                                                         <label >Supplier Type *</label>
-                                                       <select name="supp_id" class="form-control">
+                                                       <select name="supp_id" class="form-control" required>
                                                            @foreach($sup as $row)
                                                                <option value="{{ $row->id }}">{{ $row->name }}</option>
                                                            @endforeach
@@ -86,10 +85,7 @@
                                                          <input type="date" class="form-control" id="buy_date" name="buy_date" placeholder="buy_date" required>
                                                      </div>
                                                    
-                                                    <div class="form-group">
-                                                        <label for="expire_date">Expire Date *</label>
-                                                        <input type="date" class="form-control" id="expire_date" name="expire_date" placeholder="expire_date" required>
-                                                    </div>
+                                                    
                                                     <div class="form-group">
                                                         <label for="buying_price">Buying Price *</label>
                                                         <input type="text" class="form-control" id="buying_price" name="buying_price" placeholder="buying_price" required>

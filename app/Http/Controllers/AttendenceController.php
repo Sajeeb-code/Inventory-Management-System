@@ -56,7 +56,7 @@ class AttendenceController extends Controller
     //all attendence
     public function allAttendence()
     {
-        $allAttendence = DB::table('attendences')->select('edit_date')->groupBy('edit_date')->get();
+        $allAttendence = DB::table('attendences')->select('edit_date')->groupBy('edit_date')->orderBy('id','DESC')->get();
         // $allAttendence = DB::table('attendences')->get();
 
         return view('attendence.allAttendence',compact('allAttendence'));

@@ -7,7 +7,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+                 @php
+                    $logo = DB::table('settings')->first();
+                @endphp
+    <title>{{ $logo->company_name }}</title>
 
     <!-- Scripts -->
           <!-- DataTables -->
@@ -56,9 +59,7 @@
                                  <!-- Top Bar Start -->
             <div class="topbar">
                 <!-- LOGO -->
-                @php
-                    $logo = DB::table('settings')->first();
-                @endphp
+                
                 <div class="topbar-left">
                     <div class="text-center">
                         <a href="/" class="logo">
@@ -190,7 +191,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('add.product') }}"><i class="far fa-plus"></i> Add Product</a></li>
                                     <li><a href="{{ route('all.product') }}"><i class="fas fa-border-all"></i> All Product</a></li>
-                                    <li><a href="{{ route('import.product') }}"><i class="fas fa-file-import"></i>Import Product</a></li>
+                                    {{-- <li><a href="{{ route('import.product') }}"><i class="fas fa-file-import"></i>Import Product</a></li> --}}
                                     
                                 </ul>
                             </li>

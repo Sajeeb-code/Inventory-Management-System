@@ -27,14 +27,12 @@ class EmployeeController extends Controller
      $request->validate([
                 'name' => 'required|max:255',
                 'email' => 'bail|required|unique:employees|max:255',
-                'phone' => 'required|min:11',
-                'nid_no' => 'required|max:20',
+                'phone' => 'required|regex:/(01)[0-9]{9}/',
+                'nid_no' => 'required|numeric',
                 'address' => 'required',
                 'experience' => 'required',
                 'city' => 'required',
-                'salary' => 'required',
-                'vacation' => 'required',
-                'photo' => 'required|mimes:jpeg,png|max:2048'
+                'salary' => 'required', 'photo' => 'required|mimes:jpeg,png|max:2048'
      ]);
        
        $employee = new Employee();
@@ -46,7 +44,6 @@ class EmployeeController extends Controller
        $employee->nid_no = $request->nid_no;
        $employee->experience = $request->experience;
        $employee->salary = $request->salary;
-       $employee->vacation = $request->vacation;
        $employee->city = $request->city;
 
        if($request->hasfile('photo')){
@@ -115,10 +112,11 @@ class EmployeeController extends Controller
     {
          $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'email' => 'required|max:255',
-            'nid_no' => 'required|max:255',
+            'email' => 'bail|required|email|unique:employees,email,'.$request->id,
+            // 'email' => 'required|max:255',
+            'nid_no' => 'required|numeric',
             'address' => 'required',
-            'phone' => 'required|min:11',
+            'phone' => 'required|regex:/(01)[0-9]{9}/',
             'photo' => 'mimes:jpg,png,jpeg|max:2048',
             'salary' => 'required',   
         ]);
@@ -132,7 +130,6 @@ class EmployeeController extends Controller
        $employee->nid_no = $request->nid_no;
        $employee->experience = $request->experience;
        $employee->salary = $request->salary;
-       $employee->vacation = $request->vacation;
        $employee->city = $request->city;
 
         if($request->hasfile('photo')){

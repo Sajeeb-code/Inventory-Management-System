@@ -39,57 +39,36 @@
                                            {{ csrf_field() }}
                                             <div class="col-md-5">
                                                  <div class="form-group">
-                                                    <label for="name">Full Name</label>
-                                                    <input type="text" class="form-control" id="name" name="name" placeholder="full name" >
+                                                    <label for="name">Full Name *</label>
+                                                    <input type="text" class="form-control" id="name" name="name" placeholder="full name" required >
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Email address</label>
                                                     <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter email">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="phone">Phone No.</label>
+                                                    <label for="phone">Phone No. *</label>
                                                     <input type="text" class="form-control" id="phone" name="phone" placeholder="phone number" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="address"> Address</label>
+                                                    <label for="address"> Address *</label>
                                                     <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="shop_name">Shop Name</label>
-                                                    <input type="text" class="form-control" id="shop_name" name="shop_name" placeholder="Shop name" >
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="bank_name">Bank Name</label>
-                                                    <input type="text" class="form-control" id="bank_name" name="bank_name" placeholder="bank name" >
-                                                </div>
+                                               
                                                 
                                                 
                                                   <button type="submit" class="btn btn-purple waves-effect waves-light" value="submit">Submit</button>
                                             </div>
                                             <div class="col-md-5">
 
-                                                     <div class="form-group">
-                                                            <label for="bank_branch">Bank Bannch</label>
-                                                            <input type="text" class="form-control" id="bank_branch" name="bank_branch" placeholder="bank_branch " >
-                                                     </div>
-                                                
-                                                     <div class="form-group">
-                                                        <label for="account_holder">Account holder</label>
-                                                        <input type="text" class="form-control" id="account_holder" name="account_holder" placeholder="account_holder " >
-                                                     </div>
-                                                     <div class="form-group">
-                                                        <label for="account_no">Account No.</label>
-                                                        <input type="text" class="form-control" id="account_no" name="account_no" placeholder="account_no " >
-                                                     </div>
-                                                
-                                                     <div class="form-group">
-                                                        <label for="nid_no">NID NO.</label>
-                                                        <input type="text" class="form-control" id="nid_no" name="nid_no" placeholder="national id no" required>
+                                                    <div class="form-group">
+                                                        <label for="shop_name">Shop Name</label>
+                                                        <input type="text" class="form-control" id="shop_name" name="shop_name" placeholder="Shop name" >
                                                     </div>
                                                     
                                                     <div class="form-group">
                                                         <label for="city">City</label>
-                                                        <input type="text" class="form-control" id="city" name="city" placeholder="city" required>
+                                                        <input type="text" class="form-control" id="city" name="city" placeholder="city" >
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="file" style="cursor: pointer;">Photo</label>

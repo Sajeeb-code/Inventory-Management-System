@@ -37,7 +37,8 @@
                                                 $com_name = DB::table('settings')->first();
                                             @endphp
                                             <div class="pull-left">
-                                                <h4>{{ $com_name->company_name }}</h4>
+                                                <img src="{{ asset('images/company') }}/{{ $com_name->company_logo }}" style="height: 60px; width:100px;" class="annonce-img">
+                                                <h3>{{ $com_name->company_name }}</h3>
                                                 
                                             </div>
                                             <div class="pull-right">
@@ -106,11 +107,11 @@
                                         </div>
                                         <div class="row" style="border-radius: 0px;">
                                             <div class="col-md-3 col-md-offset-9">
-                                                <p class="text-right"><b>Sub-total:</b> {{ Cart::subtotal() }}</p>
+                                                {{-- <p class="text-right"><b>Sub-total:</b> {{ Cart::subtotal() }}</p> --}}
                                                 {{-- <p class="text-right">Discout:  {{ Cart::discount() }}</p> --}}
-                                                <p class="text-right">VAT:  {{ Cart::tax() }}</p>
+                                                {{-- <p class="text-right">VAT:  {{ Cart::tax() }}</p> --}}
                                                 <hr>
-                                                <h3 class="text-right">Total  {{ Cart::total() }} </h3>
+                                                <h3 class="text-right">Total  {{ Cart::subtotal() }} </h3>
                                             </div>
                                         </div>
                                         <hr>
@@ -149,7 +150,7 @@
                             <div class="modal-header"> 
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
                                 <h4 class="modal-title">Invoice of {{ $customer->name }}</h4> 
-                                <h5 class="pull-right text-danger">Total {{ Cart::total() }}</h5>
+                                <h5 class="pull-right text-danger">Total {{ Cart::subtotal() }}</h5>
                                 <span class=" text-info">{{ date('d,F Y') }}</span>
                             </div> 
                             <div class="modal-body">
@@ -171,9 +172,9 @@
                                 
                                  
                                 <div class="row"> 
-                                    <div class="col-md-4"> 
+                                    <div class="col-md-6"> 
                                         <div class="form-group"> 
-                                            <label for="field-4" class="control-label">Payment *</label> 
+                                            <label for="field-6" class="control-label">Payment *</label> 
                                             <select name="payment_status" id="" class="form-control" required>
                                                 <option value="HandCash">Hand Cash</option>
                                                 <option value="Chack">Cheque</option>
@@ -182,19 +183,13 @@
                                         </div> 
                                     </div> 
                                     
-                                    <div class="col-md-4"> 
+                                    <div class="col-md-6"> 
                                         <div class="form-group"> 
-                                            <label for="field-5" class="control-label">Pay</label> 
+                                            <label for="field-6" class="control-label">Pay *</label> 
                                             <input type="number" class="form-control" id="field-5"  name="pay" placeholder="pay amount " required> 
                                         </div> 
                                     </div> 
-                                    <div class="col-md-4"> 
-                                        <div class="form-group"> 
-                                            <label for="field-6" class="control-label">Due</label> 
-                                            <input type="text" class="form-control" id="field-6" name="due" placeholder="due amount"  > 
-                                            {{-- <p class="form-control" value="{{ Cart::total() - 3 }}"></p> --}}
-                                        </div> 
-                                    </div>
+                                   
                                         
                                 </div>
                                 <input type="hidden" name="customer_id" value="{{ $customer->id }}">
@@ -202,8 +197,8 @@
                                 <input type="hidden" name="order_status" value="success">
                                 <input type="hidden" name="total_products" value="{{ Cart::count() }}">
                                 <input type="hidden" name="sub_total" value="{{ Cart::subtotal() }}">
-                                <input type="hidden" name="vat" value="{{ Cart::tax() }}">
-                                <input type="hidden" name="total" value="{{ Cart::total() }}">
+                                {{-- <input type="hidden" name="vat" value="{{ Cart::tax() }}"> --}}
+                                {{-- <input type="hidden" name="total" value="{{ Cart::total() }}"> --}}
  
                             </div> 
                             <div class="modal-footer"> 

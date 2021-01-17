@@ -49,17 +49,21 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="product_wareHouse">Product Ware House *</label>
-                                                    <input type="text" class="form-control" id="product_wareHouse" name="product_wareHouse" placeholder="product_wareHouse " required value="{{ $editProduct->product_wareHouse }}">
+                                                    {{-- <input type="text" class="form-control" id="product_wareHouse" name="product_wareHouse" placeholder="product_wareHouse " required value="{{ $editProduct->product_wareHouse }}"> --}}
+                                                    <textarea name="product_description" class="form-control" id="" cols="30" rows="10" required>{{ $editProduct->product_description }}</textarea>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="product_route"> Product Route *</label>
-                                                    <input type="text" class="form-control" id="product_route" name="product_route" placeholder="product_route" required value="{{ $editProduct->product_route }}">
-                                                </div>
-                                                @php
-                                                    $cat = DB::table('categories')->get();
-                                                @endphp
                                                 
-                                                 <div class="form-group">
+                                               <br>
+                                                 <button type="submit" class="btn btn-lg btn-purple waves-effect waves-light" value="submit">Submit</button>
+                                                 
+                                            </div>
+                                            <div class="col-md-5">
+
+                                                    @php
+                                                        $cat = DB::table('categories')->get();
+                                                    @endphp
+                                                
+                                                    <div class="form-group">
                                                         <label >Ctegory Type *</label>
                                                        <select name="cat_id" class="form-control">
                                                            @foreach($cat as $row)
@@ -70,12 +74,7 @@
                                                                     >{{ $row->category_name }}</option>
                                                            @endforeach
                                                        </select>
-                                                    </div><br>
-                                                 <button type="submit" class="btn btn-lg btn-purple waves-effect waves-light" value="submit">Submit</button>
-                                                 
-                                            </div>
-                                            <div class="col-md-5">
-
+                                                    </div>
                                                     @php
                                                         $sup = DB::table('suppliers')->get();
                                                     @endphp
@@ -96,10 +95,6 @@
                                                          <input type="date" class="form-control" id="buy_date" name="buy_date" placeholder="buy_date" required value="{{ $editProduct->buy_date }}">
                                                      </div>
                                                    
-                                                    <div class="form-group">
-                                                        <label for="expire_date">Expire Date *</label>
-                                                        <input type="date" class="form-control" id="expire_date" name="expire_date" placeholder="expire_date" required value="{{ $editProduct->expire_date }}">
-                                                    </div>
                                                     <div class="form-group">
                                                         <label for="buying_price">Buying Price *</label>
                                                         <input type="text" class="form-control" id="buying_price" name="buying_price" placeholder="buying_price" required value="{{ $editProduct->buying_price }}">

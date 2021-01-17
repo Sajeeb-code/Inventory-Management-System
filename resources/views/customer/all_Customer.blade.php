@@ -12,6 +12,11 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <a href="{{ route('add.customer') }}" class="btn btn-primary">Add New</a> 
+                                        @if(session()->has('message'))
+                                            <div class="alert alert-success">
+                                                {{ session()->get('message') }}
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">
@@ -42,7 +47,7 @@
                                                                 <td>
                                                                     <a href="{{ 'view-customer/'.$customer->id }}" class="btn btn-sm btn-primary">Details</a>
                                                                     <a href="{{ 'edit-customer/'.$customer->id }}" class="btn btn-sm btn-info">Edit</a>
-                                                                    <a href="{{ ('delete-customer/'.$customer->id) }}" class="btn btn-md btn-danger" id="delete">Delete</a>
+                                                                    <a href="{{ ('delete-customer/'.$customer->id) }}" class="btn btn-md btn-danger" id="delete" >Delete</a>
                                                                 </td>
                                                             </tr>
                                                        @endforeach

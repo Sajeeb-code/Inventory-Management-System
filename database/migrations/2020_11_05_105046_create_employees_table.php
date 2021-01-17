@@ -23,7 +23,7 @@ class CreateEmployeesTable extends Migration
             $table->string('nid_no');
             $table->string('photo');
             $table->string('salary');
-            $table->string('vacation');
+            // $table->string('vacation');
             $table->string('city');
             $table->timestamps();
         });

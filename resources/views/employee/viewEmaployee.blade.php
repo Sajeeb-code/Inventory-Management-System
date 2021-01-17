@@ -61,10 +61,7 @@
                                                         <label for="salary">Salary</label>
                                                        <p>{{ $single->salary }}</p>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="vacation">Vacation</label>
-                                                       <p>{{ $single->vacation }}</p>
-                                                    </div>
+                                                    
                                                     <div class="form-group">
                                                         <label for="city">City</label>
                                                        <p>{{ $single->city }}</p>

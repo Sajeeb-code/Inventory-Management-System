@@ -71,10 +71,7 @@
                                                         <label for="salary">Salary</label>
                                                         <input type="text" class="form-control" id="salary" name="salary" placeholder="salary" required value="{{ $edit->salary }}">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="vacation">Vacation</label>
-                                                        <input type="text" class="form-control" id="vacation" name="vacation" placeholder="vacation" required value="{{ $edit->vacation }}">
-                                                    </div>
+                                                    
                                                     <div class="form-group">
                                                         <label for="city">City</label>
                                                         <input type="text" class="form-control" id="city" name="city" placeholder="city" required value="{{ $edit->city }}">

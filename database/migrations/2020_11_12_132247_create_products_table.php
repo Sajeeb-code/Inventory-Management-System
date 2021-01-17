@@ -20,10 +20,10 @@ class CreateProductsTable extends Migration
             $table->integer('supp_id');
             $table->string('product_code');
             $table->string('product_image');
-            $table->string('product_wareHouse');
-            $table->string('product_route');
+            $table->string('product_description');
+            // $table->string('product_route');
             $table->string('buy_date');
-            $table->string('expire_date');
+            // $table->string('expire_date');
             $table->string('buying_price');
             $table->string('selling_price');
             $table->timestamps();

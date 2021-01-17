@@ -28,6 +28,7 @@
                                                 @php
                                                      $cname = DB::table('settings')->first();
                                                 @endphp
+                                                <img src="{{ asset('images/company') }}/{{ $cname->company_logo }}" style="height: 60px; width:100px;" class="annonce-img">
                                                 <h2 class="text-right text-uppercase">{{ $cname->company_name }}</h2>
                                                 
                                             </div>
@@ -82,7 +83,7 @@
                                                                 <td>{{ $item->product_code }}</td>
                                                                 <td>{{ $item->quantity }}</td>
                                                                 <td>{{ $item->unitcost }}</td>
-                                                                <td>{{ $item->unitcost*$item->quantity }}</td>
+                                                                <td>{{ $item->unitcost * $item->quantity }}</td>
                                                             </tr>
                                                             @endforeach
                                                             
@@ -94,21 +95,22 @@
                                         </div>
                                         <div class="row" style="border-radius: 0px;">
                                             <br>
+                                             {{-- intval(str_replace(",", "", "3,100.00")); --}}
                                             <div class="col-md-9">
                                                 <h3>Payment Status: {{ $order->payment_status }}</h3>
                                                 <h4>Pay Amount: {{ $order->pay }}</h4>
-                                                <h4>Due amount: {{ $order->due }}</h4>
+                                                <h4>Due amount: {{  intval(str_replace(",", "", $orderSubTotal->sub_total)) - (int)$order->pay }} </h4>
                                             </div>
                                             <div class="col-md-3 ">
-                                                <p class="text-right"><b>Sub-total:</b> {{ $order->sub_total }}</p>
-                                                <p class="text-right">VAT:  {{ $order->vat }}</p>
-                                                <hr>
-                                                <h3 class="text-right">Total  {{ $order->total }} </h3>
+                                                <h3><p class="text-right"><b>Total:</b> {{ $order->sub_total }}</p></h3>
+                                                {{-- <p class="text-right">VAT:  {{ $order->vat }}</p> --}}
+                                               
+                                                {{-- <h3 class="text-right">Total  {{ $order->total }} </h3> --}}
                                             </div>
                                         </div>
                                         <hr>
                                          @if( $order->order_status == 'success')
-                                            @else
+                                            
                                             <div class="hidden-print">
                                                  <div class="pull-right">
                                                     <a href="#" onclick="window.print()" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i></a>

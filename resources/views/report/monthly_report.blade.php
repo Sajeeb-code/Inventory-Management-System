@@ -13,7 +13,8 @@
                      
                        @php
                             $monthlyIncome = date('F');
-                            $thismonthIncome = DB::table('orderdetails')->where('month',$monthlyIncome)->sum('total');
+                            // $thismonthIncome = DB::table('orderdetails')->where('month',$monthlyIncome)->sum('total');
+                            $totalmonthlysale = DB::table('orders')->where('month',$monthlyIncome)->sum('pay');
                       @endphp
                         <!-- Page-Title -->
                         <div class="row">
@@ -59,7 +60,7 @@
                                                             <th>Payment Method</th>
                                                             <th>Total</th>
                                                             <th>Pay</th>
-                                                            <th>Due</th>
+                                                            {{-- <th>Due</th> --}}
                                                         </tr></thead>
                                                         <tbody>
                                                             @php
@@ -72,9 +73,9 @@
                                                                 <td>{{ $item->address }}</td>
                                                                 <td>{{ $item->phone }}</td>
                                                                 <td>{{ $item->payment_status }}</td>
-                                                                <td>{{ $item->total }}</td>
+                                                                <td>{{ $item->sub_total }}</td>
                                                                 <td>{{ $item->pay }}</td>
-                                                                <td>{{ $item->due }}</td>
+                                                                {{-- <td>{{ $item->due }}</td> --}}
                                                             </tr>
                                                             @endforeach
                                                             
@@ -84,7 +85,7 @@
                                                     </table>
                                                 </div>
                                                 <hr><hr>
-                                                 <strong>Total: <p class="pull-right">{{ $thismonthIncome }}</p></strong>
+                                                 <h3> <p class="pull-right">Total:{{ $totalmonthlysale }}</p></h3>
                                             </div>
                                         </div>
 
